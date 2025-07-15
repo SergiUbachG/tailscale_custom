@@ -1,10 +1,11 @@
-FROM ghcr.io/home-assistant/aarch64-base:latest
+FROM ghcr.io/hassio-addons/base:12.2.7
 
-RUN apk add --no-cache bash curl
+# Instal·lar curl i bash
+RUN apk add --no-cache curl bash
 
-# Instalar tailscale
+# Instal·lar Tailscale
 RUN curl -fsSL https://pkgs.tailscale.com/stable/tailscale_1.66.4_arm64.tgz | tar -xz -C /usr/local/bin --strip-components=1
 
-# Copiar script como servicio supervisado por s6 (no usar CMD)
+# Afegir el servei supervisat per s6
 COPY run /etc/services.d/tailscale/run
 RUN chmod +x /etc/services.d/tailscale/run
