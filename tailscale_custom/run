@@ -7,18 +7,23 @@ echo "[INFO] Starting tailscaled..."
 
 TAILSCALED_PID=$!
 
+# Esperar a que tailscaled esté listo
 for i in $(seq 1 20); do
   if /usr/local/bin/tailscale status &>/dev/null; then
     echo "[INFO] tailscaled ready"
     break
   fi
-  echo "[INFO] Waiting for tailscaled..."
+  echo "[INFO] Waiting for tailscaled... ($i/20)"
   sleep 2
 done
 
+echo "[INFO] Connecting to Tailscale..."
 /usr/local/bin/tailscale up --authkey "$AUTH_KEY" --hostname hass-tailscale
 
-# Esperar a que tailscaled se mantenga vivo
+echo "[INFO] Tailscale IP:"
+/usr/local/bin/tailscale ip -4 || echo "[WARN] Could not get IP"
+
+# Mantener el proceso vivo mientras tailscaled funcione
 while kill -0 "$TAILSCALED_PID" 2>/dev/null; do
   sleep 10
 done

@@ -1,6 +1,6 @@
 {
   "name": "Tailscale Custom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "slug": "tailscale_custom",
   "description": "Tailscale with auth key support",
   "arch": ["aarch64", "amd64"],
@@ -8,7 +8,7 @@
   "boot": "auto",
   "host_network": true,
   "options": {
-    "auth_key": "tskey-auth-kPucVGJ13n11CNTRL-cbHzwtud4EXX4WwZ1wHUDXYmLqnSuWfVU"
+    "auth_key": "tskey-auth-XXXX"
   },
   "schema": {
     "auth_key": "str"
