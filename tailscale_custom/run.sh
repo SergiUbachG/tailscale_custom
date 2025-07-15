@@ -7,7 +7,6 @@ echo "[INFO] Starting tailscaled..."
 
 TAILSCALED_PID=$!
 
-# Wait until ready
 for i in $(seq 1 20); do
   if /usr/local/bin/tailscale status &>/dev/null; then
     echo "[INFO] tailscaled ready"
@@ -19,7 +18,7 @@ done
 
 /usr/local/bin/tailscale up --authkey "$AUTH_KEY" --hostname hass-tailscale
 
-# Wait on process
+# Esperar a que tailscaled se mantenga vivo
 while kill -0 "$TAILSCALED_PID" 2>/dev/null; do
   sleep 10
 done
