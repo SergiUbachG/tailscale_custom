@@ -7,4 +7,5 @@ RUN curl -fsSL https://pkgs.tailscale.com/stable/tailscale_1.66.4_arm64.tgz | ta
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
-CMD [ "/run.sh" ]
+COPY run.sh /etc/services.d/tailscale/run
+RUN chmod +x /etc/services.d/tailscale/run
