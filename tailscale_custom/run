@@ -1,14 +1,10 @@
 #!/usr/bin/with-contenv bash
-# Script d'arrencada supervisat per s6
-
 echo "[INFO] Iniciant tailscaled..."
 tailscaled &
 
-# Donem uns segons perquè el servei arrenqui correctament
 sleep 3
 
 echo "[INFO] Executant tailscale up..."
 tailscale up --authkey="${AUTH_KEY}"
 
-# Esperar per sempre (sinó s6 reiniciarà el servei)
 tail -f /dev/null
