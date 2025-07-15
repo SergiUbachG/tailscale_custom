@@ -7,5 +7,5 @@ RUN apk add --no-cache curl bash
 RUN curl -fsSL https://pkgs.tailscale.com/stable/tailscale_1.66.4_arm64.tgz | tar -xz -C /usr/local/bin --strip-components=1
 
 # Afegir el servei supervisat per s6
-COPY run /etc/services.d/tailscale/run
+COPY services.d/tailscale /etc/services.d/tailscale
 RUN chmod +x /etc/services.d/tailscale/run
