@@ -8,4 +8,4 @@ RUN curl -fsSL https://pkgs.tailscale.com/stable/tailscale_1.66.4_arm64.tgz | ta
 
 # Afegir el servei supervisat per s6
 COPY services.d/tailscale /etc/services.d/tailscale
-RUN chmod +x /etc/services.d/tailscale/run
+RUN chmod +x /etc/services.d/tailscale/run 
