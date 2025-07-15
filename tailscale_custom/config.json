@@ -1,6 +1,6 @@
 {
   "name": "Tailscale Custom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "slug": "tailscale_custom",
   "description": "Tailscale with auth key support",
   "arch": ["aarch64", "amd64"],
