@@ -1,8 +1,11 @@
-ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base-python:3.11
+RG BUILD_FROM=ghcr.io/home-assistant/amd64-addon-base:14.2.1
 FROM ${BUILD_FROM}
 
+# Copiamos todo el rootfs con s6 services
 COPY rootfs/ /
 
-# Damos permisos al script de s6
+# Permisos
 RUN chmod a+x /etc/services.d/tailscale/run
 
+# (Opcional) Instalar tailscale si no viene preinstalado
+RUN apk add --no-cache tailscale
