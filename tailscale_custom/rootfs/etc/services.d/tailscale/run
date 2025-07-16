@@ -2,6 +2,9 @@
 
 bashio::log.info "Iniciando tailscaled en primer plano..."
 
+
+AUTH_KEY=$(bashio::config 'auth_key')
+
 # Inicia tailscaled en foreground y en background controlado
 tailscaled --tun=userspace-networking --socks5-server=localhost:1055 --state=/data/tailscale.state --socket=/var/run/tailscale/tailscaled.sock --port=41641 &
 
