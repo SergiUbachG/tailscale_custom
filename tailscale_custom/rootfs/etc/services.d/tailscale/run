@@ -1,10 +1,18 @@
-#!/usr/bin/with-contenv bash
-echo "[INFO] Iniciant tailscaled..."
-tailscaled &
+#!/usr/bin/with-contenv bashio
 
+bashio::log.info "Iniciando tailscaled en primer plano..."
+
+# Inicia tailscaled en foreground y en background controlado
+tailscaled --tun=userspace-networking --socks5-server=localhost:1055 --state=/data/tailscale.state --socket=/var/run/tailscale/tailscaled.sock --port=41641 &
+
+# Esperar a que tailscaled esté disponible
 sleep 3
 
-echo "[INFO] Executant tailscale up..."
+# Iniciar tailscale
+bashio::log.info "Ejecutando tailscale up..."
 tailscale up --authkey="${AUTH_KEY}"
 
-tail -f /dev/null
+# Importante: mantener el proceso activo, usando tailscaled en foreground real
+bashio::log.info "Manteniendo proceso activo..."
+wait %1
+
