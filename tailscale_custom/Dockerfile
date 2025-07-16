@@ -1,4 +1,4 @@
-RG BUILD_FROM=ghcr.io/home-assistant/amd64-addon-base:14.2.1
+ARG BUILD_FROM=ghcr.io/home-assistant/amd64-addon-base:14.2.1
 FROM ${BUILD_FROM}
 
 # Copiamos todo el rootfs con s6 services
